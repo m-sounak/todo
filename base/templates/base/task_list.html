@@ -4,7 +4,7 @@
 <div class="header-bar">
     <div class="">
         <h1>Hello {{request.user}}</h1>
-        <h3 style="margin:0">You have <i>{{count}}</i>  incomplete task{{ count|pluralize:"s" }}</h3>
+        <h3 style="margin:0">You have <i>{{count}}</i> &nbsp; incomplete task{{ count|pluralize:"s" }}</h3>
     </div>
     {% if request.user.is_authenticated %}
         <a href="{% url 'logout' %}">Logout</a>
@@ -18,7 +18,7 @@
         <input type="text" name="search-area" value="{{search_input}}">
         <input class="button" type="submit" value="Search">
     </form>
-    <a id="add-link" href="{% url 'task-create' %}">&#x2b;</a>
+    <a id="add-link" href="{% url 'task-create' %}">&#x2b; New</a>
     
 </div>
 
@@ -28,13 +28,13 @@
         {% if task.complete %}
             <div class="task-title">
                 <div class="task-complete-icon"></div>
-                <i><s><a href="{% url 'task-update' task.id %}">{{task}}</a></s></i>
+                <i><s><a href="{% url 'task-update' task.id %}" style="color: black; font-weight: bold;">{{task}}</a></s></i>
             </div>
             <a class="delete-link" href="{% url 'task-delete' task.id %}" >&#215;</a>
         {% else %}
             <div class="task-title">
                 <div class="task-incomplete-icon"></div>
-                <a href="{% url 'task-update' task.id %}">{{task}}</a>
+                <a href="{% url 'task-update' task.id %}" style="color: black; font-weight: bold;">{{task}}</a>
             </div>
             <a class="delete-link" href="{% url 'task-delete' task.id %}" >&#215;</a>
         {% endif %}
